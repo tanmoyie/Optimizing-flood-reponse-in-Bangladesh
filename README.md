@@ -2,8 +2,7 @@
 Optimizing emergency response in Flood and other disasters using Operations Research tools
 
 
-
-<img width="556" alt="Screenshot 2024-08-26 at 02 56 14" src="https://github.com/user-attachments/assets/4acd4ab2-bcd1-4530-a5c1-7500f87537c5">
+<img width="406" alt="Screenshot 2024-08-26 at 02 56 14" src="https://github.com/user-attachments/assets/4acd4ab2-bcd1-4530-a5c1-7500f87537c5">
 
 
 Bangladesh is currently in a very difficult situation. A natural disaster, the flood, has affected millions of people in eleven districts of the southeast part of the country, creating critical humanitarian situations. On the one hand, due to the sudden flooding, people are forced to leave their homes and take shelter in nearby flood shelter facilities. On the other hand, transportation and communication networks have been significantly disrupted, affecting the timely and effective delivery of urgent supplies to the affected people, such as food, water, clothes, and medicine. At the onset of the disaster, many government and nongovernment organizations conducted search and rescue operations to bring the affected people to nearby flood shelters. However, the people in shelters constantly need life-supporting materials or reliefs, such as food, drinking water, medicines, and clothes, to name a few. Due to the disruption of transportation networks and damage in food and water supply systems, getting life-supporting materials in flood shelters poses a great challenge.    
@@ -23,4 +22,5 @@ In this endeavor, we need to brainstorm and decide on the following topics:\
 TODO: For mathematical model development, what are the variables, what are the constraints, and what are the objectives? \
 TODO: How do we decompose the developed model? How do we solve the model efficiently?\
 TODO: Once we achieve the proof of concept, how do we propose a widespread solution to optimize relief distribution in all the flood-affected zones in Bangladesh?\
-TODO: Write a journal paper and publish it.\
+TODO: Write a journal paper and publish it.
+
