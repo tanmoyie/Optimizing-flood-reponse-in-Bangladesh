@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11.5
 RUN apt-get update && apt-get install -y git
 COPY . /vrpctw_flood_app
 WORKDIR /vrpctw_flood_app
