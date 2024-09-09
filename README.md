@@ -24,3 +24,6 @@ TODO: How do we decompose the developed model? How do we solve the model efficie
 TODO: Once we achieve the proof of concept, how do we propose a widespread solution to optimize relief distribution in all the flood-affected zones in Bangladesh?\
 TODO: Write a journal paper and publish it.
 
+<img width="1034" alt="Screenshot 2024-09-08 at 21 26 17" src="https://github.com/user-attachments/assets/33e3f049-5b75-481d-bd58-f100c6e441db">
+
+
