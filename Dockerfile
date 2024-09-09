@@ -1,4 +1,4 @@
-RUN apt install python3.11
+FROM python:3.11-slim
 RUN apt-get update && apt-get install -y git
 COPY . /vrpctw_flood_app
 WORKDIR /vrpctw_flood_app
