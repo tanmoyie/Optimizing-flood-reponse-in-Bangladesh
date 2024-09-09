@@ -1,0 +1,21 @@
+name: Docker Image vrpctw_flood
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build & Push Image vrpctw_flood
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "tanmoyie" --password-stdin
+        docker image build -t tanmoyie/vrpctw_flood:latest .
+        docker push tanmoyie/vrpctw_flood:latest
