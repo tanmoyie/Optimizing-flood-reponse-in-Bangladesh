@@ -2,12 +2,13 @@ import gurobipy as gp
 from gurobipy import GRB
 import geopandas as gpd
 class HumanitarianReliefVRP:
-    def __init__(self, warehouses, shelters,  vehicles, distances, demands, capacities, ranges, population):
+    def __init__(self, warehouses, shelters, vehicles, distances, demands, availability, capacities, ranges, population):
         self.warehouses = warehouses
         self.shelters = shelters
         self.vehicles = vehicles
         self.distances = distances
         self.demands = demands
+        self.availability = availability
         self.capacities = capacities
         self.ranges = ranges
         self.population = population
@@ -19,6 +20,8 @@ class HumanitarianReliefVRP:
         # Decision variables
         self.x = self.model.addVars(self.warehouses, self.shelters, self.vehicles, vtype=GRB.BINARY, name="x")
         self.y = self.model.addVars(self.shelters, vtype=GRB.BINARY, name="y")
+        self.z = self.model.addVars(self.warehouses, self.vehicles, vtype=GRB.CONTINUOUS, name='z_truckDrone')
+        # Supplies delivered by trucks, we may not need z later (compact formaluation with x only)
 
         # Objective: Maximize the proportion of the population covered
         self.model.setObjective(gp.quicksum(self.population[s] * self.y[s] for s in self.shelters), GRB.MAXIMIZE)
@@ -27,6 +30,13 @@ class HumanitarianReliefVRP:
         for s in self.shelters:
             self.model.addConstr(gp.quicksum(self.x[w, s, v] for w in self.warehouses for v in self.vehicles) >= self.y[s])
 
+        # Warehouse availability
+        # Supply availability at each warehouse  # need to fix this
+        self.model.addConstrs((sum(self.z[w, k] for k in self.vehicles) <= self.availability[w] for w in self.warehouses), name='availability')
+        for s in self.shelters:
+            self.model.addConstrs((gp.quicksum(self.x[w, s, k] for k in self.vehicles) <= self.availability[w] for w in self.warehouses), name='availability')
+        #
+        # vehicle capacity constraint
         for w in self.warehouses:
             for v in self.vehicles:
                 self.model.addConstr(gp.quicksum(self.demands[s] * self.x[w, s, v] for s in self.shelters) <= self.capacities[v])
@@ -68,7 +78,7 @@ class ReliefNetwork:
 
     def plot_network(self, title="Optimized Humanitarian Relief Distribution Network"):
         pos = self.node_positions
-        print('pos--------', pos)
+        # print('pos--------', pos)
         # Separate nodes into warehouses and demand points
         warehouses = [node for node in self.graph.nodes if node.startswith('W')]
         shelters = [node for node in self.graph.nodes if node.startswith('S')]
